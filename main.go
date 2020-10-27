@@ -10,6 +10,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"fmt"
 )
 
 var sPoint = image.Point{0, 0}
@@ -78,6 +80,9 @@ func drawImage(fileName string, fixedSectors []Sector) {
 }
 
 func main() {
+
+	fmt.Println("Image Cutter Program has begin")
+
 	args := os.Args[:]
 
 	files, err := ioutil.ReadDir("./sourcedata")
@@ -92,18 +97,21 @@ func main() {
 		fileCheck := strings.Split(f.Name(), ".")
 
 		if len(fileCheck) == 2 {
+
 			if fileCheck[1] == "jpeg" || fileCheck[1] == "jpg" {
 				// fmt.Println(f.Name())
 				fileList = append(fileList, f.Name())
 			}
 		}
-
 	}
 
 	fixedSectors := setSector(args[1:])
 
 	for _, fileName := range fileList {
+		// fmt.Print("\033[G\033[K") //restore the cursor position and clear the line
+		fmt.Printf("Cutting %s into pieces please wait... \n", fileName)
 		drawImage(fileName, fixedSectors)
+		// fmt.Print("\033[A") // move the cursor up
 	}
 
 }
