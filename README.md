@@ -8,6 +8,6 @@ ex)
 
 ./imageCutter 150-200 300-400 500-600
 
-put the source image files on ./sourcedata directory
+You must make an sourcedata directory put the source image files on ./sourcedata directory
 
-and the results will come out in ./resultdata
+You must make an resultdata directory and the results will come out in ./resultdata
